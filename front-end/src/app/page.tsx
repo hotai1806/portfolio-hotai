@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { Menu, ArrowRight } from "lucide-react";
 // import Link from "next/link";
 import Navigation from "./components/Navgiator";
-import { FadeInSection } from "./components/ThreeBackground";
+import ThreeBackground, { FadeInSection } from "./components/ThreeBackground";
 import FlipLink from "./components/TextAnimationFlip";
+// import ModelViewer from "./components/ModelView";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +23,7 @@ export default function Home() {
 
   return (
     <div className="bg-black/95 min-h-screen text-white">
-      {/* <ThreeBackground /> */}
+      <ThreeBackground />
 
       {/* Rest of the Portfolio component remains the same... */}
       {/* Header */}
@@ -41,15 +42,7 @@ export default function Home() {
         >
           HO TAN TAI
         </FlipLink>
-        {/* <Link
-          href="/"
-          className="text-3xl font-bold hover:text-blue-400 transition-colors "
-          style={{
-            lineHeight: 0.75,
-          }}
-        >
-          HO TAN TAI
-        </Link> */}
+
         <button
           onClick={() => setIsMenuOpen(true)}
           className="z-50 p-2 hover:bg-white/10 rounded-full transition-colors"
@@ -73,6 +66,7 @@ export default function Home() {
             >
               FULLSTACK
             </span>
+            {/* <ModelViewer /> */}
             <span
               className="block transform transition-transform hover:translate-x-4 duration-300 text-red-primary"
               style={{
