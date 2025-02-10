@@ -1,9 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Menu, ArrowRight } from "lucide-react";
-import Link from "next/link";
+// import Link from "next/link";
 import Navigation from "./components/Navgiator";
-import ThreeBackground, { FadeInSection } from "./components/ThreeBackground";
+import { FadeInSection } from "./components/ThreeBackground";
+import FlipLink from "./components/TextAnimationFlip";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +22,7 @@ export default function Home() {
 
   return (
     <div className="bg-black/95 min-h-screen text-white">
-      <ThreeBackground />
+      {/* <ThreeBackground /> */}
 
       {/* Rest of the Portfolio component remains the same... */}
       {/* Header */}
@@ -30,12 +31,25 @@ export default function Home() {
           scrollPosition > 50 ? "bg-black/80 backdrop-blur-lg" : ""
         }`}
       >
-        <Link
+        <FlipLink
           href="/"
-          className="text-2xl font-bold hover:text-blue-400 transition-colors"
+          additionTailwindClass="text-4xl whitespace text-vanilla-primary"
+          className="text-2xl font-bold hover:text-blue-400 transition-colors  "
+          style={{
+            lineHeight: 0.75,
+          }}
         >
-          YourName
-        </Link>
+          HO TAN TAI
+        </FlipLink>
+        {/* <Link
+          href="/"
+          className="text-3xl font-bold hover:text-blue-400 transition-colors "
+          style={{
+            lineHeight: 0.75,
+          }}
+        >
+          HO TAN TAI
+        </Link> */}
         <button
           onClick={() => setIsMenuOpen(true)}
           className="z-50 p-2 hover:bg-white/10 rounded-full transition-colors"
@@ -50,12 +64,25 @@ export default function Home() {
       <section className="min-h-screen flex items-center px-8 relative">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            <span className="block transform transition-transform hover:translate-x-4 duration-300">
-              Creative Developer &
+            <span
+              className="block transform transition-transform hover:translate-x-4 duration-300 text-vanilla-primary"
+              style={{
+                lineHeight: "0.888em",
+                fontSize: `clamp(65px, 20.8333vw, 440px)`,
+              }}
+            >
+              FULLSTACK
             </span>
-            <span className="block transform transition-transform hover:translate-x-4 duration-300 delay-100">
-              Digital Designer
+            <span
+              className="block transform transition-transform hover:translate-x-4 duration-300 text-red-primary"
+              style={{
+                lineHeight: "0.888em",
+                fontSize: `clamp(65px, 20.8333vw, 440px)`,
+              }}
+            >
+              DEVELOPER
             </span>
+            <span className="block transform transition-transform hover:translate-x-4 duration-300 delay-100"></span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-400 max-w-2xl transform transition-all duration-300 hover:text-white hover:translate-x-2">
             Creating immersive digital experiences through code and design.

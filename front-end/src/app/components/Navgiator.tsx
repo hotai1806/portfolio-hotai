@@ -1,117 +1,71 @@
 import { X } from "lucide-react";
-// import { gsap } from "gsap";
-// import FontFaceObserver from "fontfaceobserver";
+import React, { useEffect, useState } from "react";
+import FlipLink from "./TextAnimationFlip";
+import Image from "next/image";
+import { motion } from "framer-motion";
+
 interface NavigationProps {
   isOpen: boolean;
   toggleMenu: () => void;
 }
 
 export default function Navigation({ isOpen, toggleMenu }: NavigationProps) {
+  const [rotation, setRotation] = useState(0); // Track the rotation
+
+  const handleHover = (index: number) => {
+    setRotation((index + 1) * 90); // 120° * (1 for B, 2 for C, 3 for D)
+  };
+  const handleLeave = () => {
+    setRotation(0); // Reset rotation when the mouse leaves
+  };
+  useEffect(() => {
+    if (isOpen) {
+      setRotation(180); // Rotate 360° when the menu is open
+    }
+  }, [isOpen]);
   return (
     <div
-      className={`fixed top-0 right-0 h-full w-full md:w-96 bg-black/90 backdrop-blur-lg transform transition-transform duration-500 ${
+      className={` fixed top-0 right-0 h-full w-full md:w-2/5 bg-black/90 backdrop-blur-lg transform transition-transform duration-500 bg-blue-primary  font-extrabold ${
         isOpen ? "translate-x-0" : "translate-x-full"
       } z-50`}
     >
-      <button onClick={toggleMenu} className="absolute top-8 right-8">
+      <button
+        onClick={() => {
+          toggleMenu();
+          handleHover(3);
+        }}
+        className="absolute top-8 right-8"
+      >
         <X className="w-8 h-8 text-white" />
       </button>
+      <div className="flex my-12 mx-11 items-center h-24">
+        <motion.div
+          animate={{ rotate: rotation }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        >
+          <Image src="/plus.svg" alt="spinner" width={150} height={150} />
+        </motion.div>
+      </div>
+
       <nav className="flex flex-col p-12 pt-24">
         {["Home", "Project", "About", "Contact"].map((item, index) => (
-          <FlipLink
+          <span
             key={item}
-            style={{ animationDelay: `${index * 100}ms` }}
-            href={`#${item.toLowerCase()}`}
+            onMouseEnter={() => handleHover(index)}
+            onMouseLeave={() => handleLeave()}
           >
-            {item}
-          </FlipLink>
+            <FlipLink
+              // key={item}
+              additionTailwindClass="text-xl sm:text-3xl md:text-9xl lg:text-9xl text-vanilla-primary"
+              style={{ animationDelay: `${index * 100}ms` }}
+              href={`#${item.toLowerCase()}`}
+            >
+              {item}
+            </FlipLink>
+          </span>
         ))}
       </nav>
       {/* <RevealLinks /> */}
     </div>
   );
 }
-
-import React from "react";
-import { motion } from "framer-motion";
-
-// export const RevealLinks = () => {
-//   return (
-//     <section className="grid place-content-center gap-2 bg-green-300 px-8 py-24 text-black">
-//       <FlipLink href="#">Twitter</FlipLink>
-//       <FlipLink href="#">Linkedin</FlipLink>
-//       <FlipLink href="#">Facebook</FlipLink>
-//       <FlipLink href="#">Instagram</FlipLink>
-//     </section>
-//   );
-// };
-
-const DURATION = 0.25;
-const STAGGER = 0.025;
-
-interface FlipLinkProps {
-  children: string;
-  href: string;
-  style: React.CSSProperties;
-}
-
-const FlipLink = ({ children, href }: FlipLinkProps) => {
-  return (
-    <motion.a
-      initial="initial"
-      whileHover="hovered"
-      href={href}
-      className="relative block overflow-hidden whitespace-nowrap text-xl font-black uppercase sm:text-3xl md:text-5xl lg:text-5xl"
-      style={{
-        lineHeight: 0.75,
-      }}
-    >
-      <div>
-        {children.split("").map((l, i) => (
-          <motion.span
-            variants={{
-              initial: {
-                y: 0,
-              },
-              hovered: {
-                y: "-100%",
-              },
-            }}
-            transition={{
-              duration: DURATION,
-              ease: "easeInOut",
-              delay: STAGGER * i,
-            }}
-            className="inline-block"
-            key={i}
-          >
-            {l}
-          </motion.span>
-        ))}
-      </div>
-      <div className="absolute inset-0">
-        {children.split("").map((l, i) => (
-          <motion.span
-            variants={{
-              initial: {
-                y: "100%",
-              },
-              hovered: {
-                y: 0,
-              },
-            }}
-            transition={{
-              duration: DURATION,
-              ease: "easeInOut",
-              delay: STAGGER * i,
-            }}
-            className="inline-block"
-            key={i}
-          >
-            {l}
-          </motion.span>
-        ))}
-      </div>
-    </motion.a>
-  );
-};
