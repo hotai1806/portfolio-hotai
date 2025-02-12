@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 
+import RootLayoutClient from "./root-layout-client";
+
 const myFont = localFont({
   src: "../../public/fonts/Thunder-BlackLC.woff",
   // variable: "--font-myFont",
@@ -37,7 +39,7 @@ export default function RootLayout({
         className={`${myFont.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
         style={{ lineHeight: "0.888em" }}
       >
-        {children}
+        <RootLayoutClient>{children}</RootLayoutClient>
       </body>
     </html>
   );

@@ -1,10 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Menu, ArrowRight } from "lucide-react";
-// import Link from "next/link";
 import Navigation from "./components/Navgiator";
-import ThreeBackground, { FadeInSection } from "./components/ThreeBackground";
+import { FadeInSection } from "./components/ThreeBackground";
 import FlipLink from "./components/TextAnimationFlip";
+import ModelViewer from "./components/ModelView";
 // import ModelViewer from "./components/ModelView";
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <div className="bg-black/95 min-h-screen text-white">
-      <ThreeBackground />
+      {/* <ThreeBackground /> */}
 
       {/* Rest of the Portfolio component remains the same... */}
       {/* Header */}
@@ -57,6 +57,7 @@ export default function Home() {
       <section className="min-h-screen flex items-center px-8 relative">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+            <ModelViewer />
             <span
               className="block transform transition-transform hover:translate-x-4 duration-300 text-vanilla-primary"
               style={{
@@ -68,7 +69,7 @@ export default function Home() {
             </span>
             {/* <ModelViewer /> */}
             <span
-              className="block transform transition-transform hover:translate-x-4 duration-300 text-red-primary"
+              className="block transform transition-transform hover:translate-x-4 duration-300 text-red-primary z-20"
               style={{
                 lineHeight: "0.888em",
                 fontSize: `clamp(65px, 20.8333vw, 440px)`,

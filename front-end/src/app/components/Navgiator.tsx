@@ -48,22 +48,28 @@ export default function Navigation({ isOpen, toggleMenu }: NavigationProps) {
       </div>
 
       <nav className="flex flex-col p-12 pt-24">
-        {["Home", "Project", "About", "Contact"].map((item, index) => (
-          <span
-            key={item}
-            onMouseEnter={() => handleHover(index)}
-            onMouseLeave={() => handleLeave()}
-          >
-            <FlipLink
-              // key={item}
-              additionTailwindClass="text-xl sm:text-3xl md:text-9xl lg:text-9xl text-vanilla-primary"
-              style={{ animationDelay: `${index * 100}ms` }}
-              href={`#${item.toLowerCase()}`}
+        {["Home", "Project", "About", "Contact", "Blog"].map((item, index) => {
+          let link = `#${item.toLowerCase()}`;
+          if (item == "Blog") {
+            link = "blog";
+          }
+          return (
+            <span
+              key={item}
+              onMouseEnter={() => handleHover(index)}
+              onMouseLeave={() => handleLeave()}
             >
-              {item}
-            </FlipLink>
-          </span>
-        ))}
+              <FlipLink
+                // key={item}
+                additionTailwindClass="text-xl sm:text-3xl md:text-9xl lg:text-9xl text-vanilla-primary"
+                style={{ animationDelay: `${index * 100}ms` }}
+                href={link}
+              >
+                {item}
+              </FlipLink>
+            </span>
+          );
+        })}
       </nav>
       {/* <RevealLinks /> */}
     </div>
