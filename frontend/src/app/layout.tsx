@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 
+import { ApolloWrapper } from "./ApolloWrapper";
+
 // import RootLayoutClient from "./root-layout-client";
 // import RouteLoadingIndicator from "./components/LoadingIndicator";
 
@@ -41,7 +43,7 @@ export default function RootLayout({
         style={{ lineHeight: "0.888em" }}
       >
         {/* <RouteLoadingIndicator /> */}
-        {children}
+        <ApolloWrapper>{children}</ApolloWrapper>;
         {/* <RootLayoutClient>{children}</RootLayoutClient> */}
       </body>
     </html>

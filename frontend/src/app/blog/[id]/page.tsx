@@ -1,9 +1,50 @@
-// app/blog/[id]/page.tsx
+"use client";
 import Link from "next/link";
+
+import { gql } from "@apollo/client";
+// import client from "@/app/lib/apolloClient";
+
+const GET_POSTS = gql`
+  query {
+    posts {
+      title
+      updatedAt
+      tags
+      slug
+      published
+      id
+      createdAt
+      content
+    }
+  }
+`;
+
 interface BlogPostParams {
   params: {
     id: string;
   };
+}
+interface BlogPost {
+  id: string;
+  title: string;
+  content: string;
+  date: string;
+  slug: string;
+  comments: {
+    id: string;
+    content: string;
+    date: string;
+  };
+  tags: string[];
+  createdAt: string;
+}
+
+export async function getStaticProps() {
+  // const { data } = await client.query({ query: GET_POSTS });
+  // Render the first 10 posts at build time
+  // return data.slice(0, 10).map((post: BlogPost) => ({
+  //   slug: post.slug,
+  // }));
 }
 
 export default function BlogPostPage({ params }: BlogPostParams) {
