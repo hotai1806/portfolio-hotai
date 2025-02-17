@@ -4,7 +4,7 @@ import { Menu, ArrowRight } from "lucide-react";
 import Navigation from "./components/Navgiator";
 import { FadeInSection } from "./components/ThreeBackground";
 import FlipLink from "./components/TextAnimationFlip";
-import ModelViewer from "./components/ModelView";
+// import ModelViewer from "./components/ModelView";
 // import ModelViewer from "./components/ModelView";
 
 export default function Home() {
@@ -57,7 +57,7 @@ export default function Home() {
       <section className="min-h-screen flex items-center px-8 relative">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            <ModelViewer />
+            {/* <ModelViewer /> */}
             <span
               className="block transform transition-transform hover:translate-x-4 duration-300 text-vanilla-primary"
               style={{
