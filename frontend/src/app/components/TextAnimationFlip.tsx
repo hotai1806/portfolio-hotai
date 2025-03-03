@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { myFont } from "@/app/lib/customeFont";
+
 const DURATION = 0.25;
 const STAGGER = 0.025;
 
@@ -12,7 +14,7 @@ interface FlipLinkProps {
 
 const FlipLink = ({ href, children, additionTailwindClass }: FlipLinkProps) => {
   return (
-    <div>
+    <div className={`${myFont.className}`}>
       <motion.a
         initial="initial"
         whileHover="hovered"

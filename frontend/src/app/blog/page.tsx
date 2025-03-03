@@ -30,31 +30,6 @@ interface BlogPost {
   };
 }
 
-// This would typically come from an API or database
-// const posts: BlogPost[] = [
-//   {
-//     id: "1",
-//     title: "Getting Started with Next.js App Router",
-//     excerpt:
-//       "Learn how to build modern web applications with Next.js 13+ App Router...",
-//     date: "2025-02-12",
-//     author: {
-//       name: "John Doe",
-//       avatar: "/api/placeholder/40/40",
-//     },
-//   },
-//   {
-//     id: "2",
-//     title: "Mastering Tailwind CSS",
-//     excerpt: "Discover the power of utility-first CSS with Tailwind...",
-//     date: "2025-02-10",
-//     author: {
-//       name: "Jane Smith",
-//       avatar: "/api/placeholder/40/40",
-//     },
-//   },
-// ];
-
 export default function BlogPage() {
   const { data, loading, error } = useQuery(GET_POSTS);
 

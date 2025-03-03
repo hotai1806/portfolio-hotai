@@ -4,6 +4,8 @@ import { Menu, ArrowRight } from "lucide-react";
 import Navigation from "./components/Navgiator";
 import { FadeInSection } from "./components/ThreeBackground";
 import FlipLink from "./components/TextAnimationFlip";
+import ProjectScreen from "./components/ProjectScreen";
+import { myFont } from "./lib/customeFont";
 // import ModelViewer from "./components/ModelView";
 // import ModelViewer from "./components/ModelView";
 
@@ -59,7 +61,7 @@ export default function Home() {
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
             {/* <ModelViewer /> */}
             <span
-              className="block transform transition-transform hover:translate-x-4 duration-300 text-vanilla-primary"
+              className={`${myFont.className} block transform transition-transform hover:translate-x-4 duration-300 text-vanilla-primary`}
               style={{
                 lineHeight: "0.888em",
                 fontSize: `clamp(65px, 20.8333vw, 440px)`,
@@ -69,7 +71,7 @@ export default function Home() {
             </span>
             {/* <ModelViewer /> */}
             <span
-              className="block transform transition-transform hover:translate-x-4 duration-300 text-red-primary z-20"
+              className={`${myFont.className} block transform transition-transform hover:translate-x-4 duration-300 text-red-primary z-20 pl-64`}
               style={{
                 lineHeight: "0.888em",
                 fontSize: `clamp(65px, 20.8333vw, 440px)`,
@@ -124,6 +126,9 @@ export default function Home() {
             </FadeInSection>
           ))}
         </div>
+      </section>
+      <section>
+        <ProjectScreen></ProjectScreen>
       </section>
 
       {/* About Section */}
@@ -194,10 +199,10 @@ export default function Home() {
               together.
             </p>
             <a
-              href="mailto:your@email.com"
+              href="mailto:hotai1806@gmail.com"
               className="inline-flex items-center text-2xl font-bold group hover:text-blue-400 transition-colors"
             >
-              your@email.com
+              hotai1806@gmail.com
               <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform" />
             </a>
           </FadeInSection>

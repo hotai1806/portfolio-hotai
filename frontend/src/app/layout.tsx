@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import localFont from "next/font/local";
 
 import { ApolloWrapper } from "./ApolloWrapper";
 
 // import RootLayoutClient from "./root-layout-client";
 // import RouteLoadingIndicator from "./components/LoadingIndicator";
-
-const myFont = localFont({
-  src: "../../public/fonts/Thunder-BlackLC.woff",
-  // variable: "--font-myFont",
-  display: "swap",
-});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${myFont.className} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={` ${geistSans.variable} ${geistMono.variable} antialiased`}
         style={{ lineHeight: "0.888em" }}
       >
         {/* <RouteLoadingIndicator /> */}
