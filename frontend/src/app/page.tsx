@@ -96,11 +96,11 @@ export default function Home() {
           {[1, 2, 3, 4].map((item) => (
             <FadeInSection key={item}>
               <div
-                className="group relative overflow-hidden"
+                className="group relative overflow-hidden bg-red"
                 onMouseEnter={() => setHoveredProject(item)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <div className="aspect-w-16 aspect-h-9 bg-gray-800 rounded-lg overflow-hidden">
+                <div className="aspect-w-16 aspect-h-9 bg-red-800 rounded-lg overflow-hidden">
                   <div
                     className={`w-full h-full bg-gray-700 transition-all duration-500 ${
                       hoveredProject === item ? "scale-110 blur-sm" : ""

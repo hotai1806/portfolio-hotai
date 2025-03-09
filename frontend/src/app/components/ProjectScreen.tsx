@@ -1,11 +1,7 @@
 // pages/index.tsx
 import Image from "next/image";
 
-const images = [
-  "/path/to/image1.jpg",
-  "/path/to/image2.jpg",
-  "/path/to/image3.jpg",
-];
+const images = ["/images/GovEntry.png"];
 
 export default function ProjectScreen() {
   return (
