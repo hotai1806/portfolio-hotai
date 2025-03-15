@@ -6,6 +6,7 @@ import { FadeInSection } from "./components/ThreeBackground";
 import FlipLink from "./components/TextAnimationFlip";
 import ProjectScreen from "./components/ProjectScreen";
 import { myFont } from "./lib/customeFont";
+// import ThreeDViewer from "./components/ThreeDViewer";
 // import ModelViewer from "./components/ModelView";
 // import ModelViewer from "./components/ModelView";
 
@@ -13,7 +14,14 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-
+  // const objects: Object3DData[] = [
+  //   {
+  //     id: 1,
+  //     name: "Geometric Shape",
+  //     description: "A complex geometric shape with particle effects",
+  //     modelPath: "models/delorean_time_machine.glb",
+  //   },
+  // ];
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -59,7 +67,6 @@ export default function Home() {
       <section className="min-h-screen flex items-center px-8 relative">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            {/* <ModelViewer /> */}
             <span
               className={`${myFont.className} block transform transition-transform hover:translate-x-4 duration-300 text-vanilla-primary`}
               style={{
@@ -69,7 +76,7 @@ export default function Home() {
             >
               FULLSTACK
             </span>
-            {/* <ModelViewer /> */}
+
             <span
               className={`${myFont.className} block transform transition-transform hover:translate-x-4 duration-300 text-red-primary z-20 pl-64`}
               style={{
