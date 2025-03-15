@@ -1,16 +1,16 @@
 import Link from "next/link";
 
 import { gql } from "@apollo/client";
-import { request } from "graphql-request";
+// import { request } from "graphql-request";
 import { getClient } from "../../../app/lib/apolloClient";
 
-const GET_POST_IDS = gql`
-  query {
-    posts {
-      id
-    }
-  }
-`;
+// const GET_POST_IDS = gql`
+//   query {
+//     posts {
+//       id
+//     }
+//   }
+// `;
 
 const GET_POSTS_BY_ID = gql`
   query ($postId: ID) {
@@ -44,17 +44,18 @@ type Params = Promise<{ id: string }>;
 export async function generateStaticParams() {
   // Fetch all blog IDs that should be statically generated
   try {
-    const data: PostIdsResponse = await request(
-      "http://localhost:4000/graphql",
-      GET_POST_IDS
-    );
-    if (!data || !data.posts || data.posts.length === 0) {
-      console.warn("⚠️ No posts found, returning empty paths (404)");
-      return [];
-    }
-    return data.posts.map((post: PostResponse) => ({
-      id: post.id,
-    }));
+    // const data: PostIdsResponse = await request(
+    //   "http://localhost:4000/graphql",
+    //   GET_POST_IDS
+    // );
+    // if (!data || !data.posts || data.posts.length === 0) {
+    //   console.warn("⚠️ No posts found, returning empty paths (404)");
+    //   return [];
+    // }
+    // return data.posts.map((post: PostResponse) => ({
+    //   id: post.id,
+    // }));
+    return [{ id: "1" }];
   } catch (error) {
     console.error("❌ GraphQL Error in generateStaticParams:", error);
     return []; // Return empty paths to trigger 404
