@@ -1,8 +1,9 @@
 import Link from "next/link";
 
-import { gql } from "@apollo/client";
+// import { gql } from "@apollo/client";
 // import { request } from "graphql-request";
-import { getClient } from "../../../app/lib/apolloClient";
+// import { getClient } from "../../../app/lib/apolloClient";
+import Image from "next/image";
 
 // const GET_POST_IDS = gql`
 //   query {
@@ -12,24 +13,24 @@ import { getClient } from "../../../app/lib/apolloClient";
 //   }
 // `;
 
-const GET_POSTS_BY_ID = gql`
-  query ($postId: ID) {
-    post(id: $postId) {
-      author {
-        username
-      }
-      comments {
-        author {
-          username
-        }
-      }
-      content
-      createdAt
-      id
-      title
-    }
-  }
-`;
+// const GET_POSTS_BY_ID = gql`
+//   query ($postId: ID) {
+//     post(id: $postId) {
+//       author {
+//         username
+//       }
+//       comments {
+//         author {
+//           username
+//         }
+//       }
+//       content
+//       createdAt
+//       id
+//       title
+//     }
+//   }
+// `;
 
 export type PostIdsResponse = {
   posts: { id: string }[];
@@ -64,20 +65,23 @@ export async function generateStaticParams() {
 
 export default async function BlogPostPage(props: { params: Params }) {
   // In a real app, you would fetch the post data based on the ID
-  const client = getClient();
-  const { data } = await client.query({
-    query: GET_POSTS_BY_ID, // this will query the id only
-    variables: {
-      postId: "1",
-    },
-  });
-  const id = (await props.params).id;
+  console.log(props.params);
+  // const client = getClient();
+  // const { data } = await client.query({
+  //   query: GET_POSTS_BY_ID, // this will query the id only
+  //   variables: {
+  //     postId: "1",
+  //   },
+  // });
+  // const id = (await props.params).id;
 
   const post = {
-    id: id,
-
-    title: data.post.title,
-    content: data.post.content,
+    // id: id,
+    id: "1",
+    title: "Hello World",
+    content: "This is a blog post.",
+    // title: data.post.title,
+    // content: data.post.content,
     date: "2025-02-12",
     author: {
       name: "John Doe",
@@ -91,9 +95,11 @@ export default async function BlogPostPage(props: { params: Params }) {
         <header className="mb-8">
           <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
           <div className="flex items-center">
-            <img
+            <Image
               src={post.author.avatar}
               alt={post.author.name}
+              width={48}
+              height={48}
               className="w-12 h-12 rounded-full mr-4"
             />
             <div>
