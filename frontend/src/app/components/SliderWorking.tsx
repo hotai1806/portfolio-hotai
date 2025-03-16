@@ -59,29 +59,47 @@ export default function SliderWorking() {
   useEffect(() => {
     const handleScroll = (e: WheelEvent) => {
       if (!scrollContainerRef.current) return;
-      e.stopPropagation();
-      e.preventDefault();
+      const container = scrollContainerRef.current;
+      const isAtRightEdge =
+        container.scrollLeft + container.clientWidth >=
+        container.scrollWidth - 1;
+      const isAtLeftEdge = container.scrollLeft <= 0;
 
-      console.log(e.deltaY, "222");
-      const scrollAmount = e.deltaY * 30.5; // Increase speed
+      // Calculate scroll direction
+      const isScrollingRight = e.deltaY > 0;
+      const isScrollingLeft = e.deltaY < 0;
 
-      const currentScrollLeft = scrollContainerRef.current.scrollLeft;
+      // Only prevent default and handle scroll if:
+      // 1. Scrolling right and not at right edge, OR
+      // 2. Scrolling left and not at left edge
+      if (
+        (isScrollingRight && !isAtRightEdge) ||
+        (isScrollingLeft && !isAtLeftEdge)
+      ) {
+        e.stopPropagation();
+        e.preventDefault();
 
-      // Calculate the new scroll position
-      const newScrollLeft = currentScrollLeft + scrollAmount;
-      scrollContainerRef.current.scrollLeft += scrollAmount;
-      console.info("ww", newScrollLeft);
+        console.log(e.deltaY, "222");
+        const scrollAmount = e.deltaY * 30.5; // Increase speed
 
-      // Calculate new slide index
-      const projectWidth =
-        scrollContainerRef.current.scrollWidth / projects.length;
+        const currentScrollLeft = scrollContainerRef.current.scrollLeft;
 
-      const newSlide = Math.round(newScrollLeft / projectWidth);
+        // Calculate the new scroll position
+        const newScrollLeft = currentScrollLeft + scrollAmount;
+        scrollContainerRef.current.scrollLeft += scrollAmount;
+        console.info("ww", newScrollLeft);
 
-      console.log("newSlide", newSlide);
-      setCurrentSlide((prev) =>
-        newSlide >= 0 && newSlide < totalSlides ? newSlide : prev
-      );
+        // Calculate new slide index
+        const projectWidth =
+          scrollContainerRef.current.scrollWidth / projects.length;
+
+        const newSlide = Math.round(newScrollLeft / projectWidth);
+
+        console.log("newSlide", newSlide);
+        setCurrentSlide((prev) =>
+          newSlide >= 0 && newSlide < totalSlides ? newSlide : prev
+        );
+      }
     };
 
     const scrollContainer = scrollContainerRef.current;
