@@ -4,8 +4,9 @@ import { Menu, ArrowRight } from "lucide-react";
 import Navigation from "./components/Navgiator";
 import { FadeInSection } from "./components/ThreeBackground";
 import FlipLink from "./components/TextAnimationFlip";
-import ProjectScreen from "./components/ProjectScreen";
+
 import { myFont } from "./lib/customeFont";
+import ExperienceSlider from "./components/SliderWorking";
 // import ThreeDViewer from "./components/ThreeDViewer";
 // import ModelViewer from "./components/ModelView";
 // import ModelViewer from "./components/ModelView";
@@ -23,16 +24,16 @@ export default function Home() {
   //   },
   // ];
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollSetHeader = () => {
       setScrollPosition(window.scrollY);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScrollSetHeader);
+    return () => window.removeEventListener("scroll", handleScrollSetHeader);
   }, []);
 
   return (
-    <div className="bg-black/95 min-h-screen text-white">
+    <div className="bg-black/95 min-h-screen text-white ">
       {/* <ThreeBackground /> */}
 
       {/* Rest of the Portfolio component remains the same... */}
@@ -89,9 +90,12 @@ export default function Home() {
             <span className="block transform transition-transform hover:translate-x-4 duration-300 delay-100"></span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-400 max-w-2xl transform transition-all duration-300 hover:text-white hover:translate-x-2">
-            Creating immersive digital experiences through code and design.
+            &quot;Where were we go, we don&apos;t need road&quot; - Doc
           </p>
         </div>
+      </section>
+      <section id="experience" className="py-20 px-8">
+        <ExperienceSlider></ExperienceSlider>
       </section>
 
       {/* Work Section */}
@@ -133,9 +137,6 @@ export default function Home() {
             </FadeInSection>
           ))}
         </div>
-      </section>
-      <section>
-        <ProjectScreen></ProjectScreen>
       </section>
 
       {/* About Section */}
@@ -220,7 +221,7 @@ export default function Home() {
       <footer className="py-8 px-8 border-t border-gray-800">
         <div className="flex justify-between items-center">
           <p className="text-gray-400">
-            © {new Date().getFullYear()} Your Name
+            © {new Date().getFullYear()} Ho Tan Tai
           </p>
           <div className="flex gap-6">
             {["Twitter", "GitHub", "LinkedIn"].map((platform) => (
