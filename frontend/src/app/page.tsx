@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, ArrowRight } from "lucide-react";
 import Navigation from "./components/Navgiator";
 import { FadeInSection } from "./components/ThreeBackground";
@@ -7,14 +7,12 @@ import FlipLink from "./components/TextAnimationFlip";
 
 import { myFont } from "./lib/customeFont";
 import ExperienceSlider from "./components/SliderWorking";
-// import ThreeDViewer from "./components/ThreeDViewer";
-// import ModelViewer from "./components/ModelView";
-// import ModelViewer from "./components/ModelView";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+
   // const objects: Object3DData[] = [
   //   {
   //     id: 1,
@@ -23,6 +21,42 @@ export default function Home() {
   //     modelPath: "models/delorean_time_machine.glb",
   //   },
   // ];
+  const pressTextRef = useRef<HTMLElement>(null);
+  const awardsTextRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      // Calculate new positions based on scroll
+      // You can adjust the multiplier (0.5) to control animation speed
+      if (pressTextRef.current && awardsTextRef.current) {
+        const pressWidth = pressTextRef.current.offsetWidth;
+        const awardsWidth = awardsTextRef.current.offsetWidth;
+        const windowWidth = window.innerWidth;
+        const positionPress = windowWidth / 2 - pressWidth;
+        const postionAwrd = windowWidth / 2 - awardsWidth;
+
+        const pressOffset = positionPress + scrollPosition * 5.5; // Move right
+        const awardsOffset = postionAwrd - scrollPosition * 5.5; // Move left
+
+        // Apply new positions
+
+        pressTextRef.current.style.transform = `translateX(${pressOffset}px)`;
+        awardsTextRef.current.style.transform = `translateX(${awardsOffset}px)`;
+      }
+    };
+
+    // Initial calculation
+
+    // Event listeners
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   useEffect(() => {
     const handleScrollSetHeader = () => {
       setScrollPosition(window.scrollY);
@@ -69,21 +103,15 @@ export default function Home() {
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
             <span
-              className={`${myFont.className} block transform transition-transform hover:translate-x-4 duration-300 text-vanilla-primary`}
-              style={{
-                lineHeight: "0.888em",
-                fontSize: `clamp(65px, 20.8333vw, 440px)`,
-              }}
+              ref={pressTextRef}
+              className={`${myFont.className} md:leading-[0.888em] text-[clamp(25px,20.8333vw,440px)] md:text-[clamp(65px,20.8333vw,440px)] block transform transition-transform hover:translate-x-4 duration-100 text-vanilla-primary `}
             >
               FULLSTACK
             </span>
 
             <span
-              className={`${myFont.className} block transform transition-transform hover:translate-x-4 duration-300 text-red-primary z-20 pl-64`}
-              style={{
-                lineHeight: "0.888em",
-                fontSize: `clamp(65px, 20.8333vw, 440px)`,
-              }}
+              ref={awardsTextRef}
+              className={`${myFont.className} md:leading-[0.888em] text-[clamp(25px,20.8333vw,440px)] md:text-[clamp(65px,20.8333vw,440px)] block transform transition-transform hover:translate-x-4 duration-100 text-red-primary z-20 md:pl-64  pl-2`}
             >
               DEVELOPER
             </span>
@@ -148,10 +176,10 @@ export default function Home() {
           <FadeInSection>
             <h2 className="text-4xl font-bold mb-8">About</h2>
             <p className="text-xl text-gray-400 mb-8 hover:text-white transition-colors">
-              I&apos;m a creative developer based in [Your Location]. With a
-              passion for creating immersive digital experiences, I combine
-              technical expertise with creative design to build meaningful and
-              innovative solutions.
+              I&apos;m a creative developer based in Ho Chi Minh City, Viet Nam.
+              With a passion for creating immersive digital experiences, I
+              combine technical expertise with creative design to build
+              meaningful and innovative solutions.
             </p>
           </FadeInSection>
 
@@ -161,10 +189,10 @@ export default function Home() {
                 <h3 className="text-2xl font-bold mb-4">Skills</h3>
                 <ul className="space-y-2 text-gray-400">
                   <li className="hover:text-white transition-colors">
-                    Frontend Development
+                    Backend Development
                   </li>
                   <li className="hover:text-white transition-colors">
-                    Creative Development
+                    Frontend Development
                   </li>
                   <li className="hover:text-white transition-colors">
                     3D Animation
@@ -187,7 +215,10 @@ export default function Home() {
                     Three.js
                   </li>
                   <li className="hover:text-white transition-colors">WebGL</li>
-                  <li className="hover:text-white transition-colors">GLSL</li>
+                  <li className="hover:text-white transition-colors">Python</li>
+                  <li className="hover:text-white transition-colors">
+                    NodeJs / NestJs
+                  </li>
                 </ul>
               </div>
             </FadeInSection>
