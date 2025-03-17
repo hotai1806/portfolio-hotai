@@ -1,10 +1,28 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SliderWorking() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if the screen is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Set initial value
+    checkMobile();
+
+    // Add resize listener
+    window.addEventListener("resize", checkMobile);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const projects = [
     {
@@ -13,11 +31,13 @@ export default function SliderWorking() {
       description:
         "Worked on small-scale projects, improving problem-solving and technical skills.",
       image: "images/landingpage.png",
-      website: "github.com/hotai1806",
+      website: "Personal Portfolio",
+      urlSite: "https://qvieth.vercel.app",
       service: "Full-Stack Development",
       development: "Landing Page, Ecommerce",
       tagline: "The future belongs to those who invest in it",
       awards: "To be update",
+      isProof: true,
     },
     {
       id: 2,
@@ -25,10 +45,11 @@ export default function SliderWorking() {
       description:
         "Developed banking products like credit cards, loans, and deposits. Wrote logic for cash flow, CI/CD setup, and integration testing.",
       website: "gft.com",
+      urlSite: "",
       service: "Banking Technology",
       development: "Core Banking",
       image: "/images/Trust-Bank2.png",
-      tagline: "The future belongs to those who invest in it",
+      tagline: "Shape of digital world",
       awards: "Launch Credit Card",
     },
     {
@@ -36,12 +57,15 @@ export default function SliderWorking() {
       title: "Gov-Entry - RSAF COVID Entry App",
       description:
         "Developed APIs for an entry-checking application during COVID-19, integrated APIs into React.js, and designed schema support.",
-      website: "kyanon.digital",
+      urlSite:
+        "https://www.developer.tech.gov.sg/products/categories/platform/goventry/overview.html",
+      website: "Goventry",
       development: "CMS System and Attendee Check Point",
       service: "Government & Public Health",
       image: "/images/GovEntry.png",
-      tagline: "The future belongs to those who invest in it",
-      awards: "",
+      tagline: "Covid-19 and move forward",
+      awards: "System help people control F0 in Covid-19",
+      isProof: true,
     },
   ];
 
@@ -132,8 +156,14 @@ export default function SliderWorking() {
     <div className="bg-black text-white min-h-screen ">
       {/* Header */}
       <header className="p-12">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center">
+        <div
+          className={`flex ${
+            isMobile ? "flex-col space-y-4" : "justify-between items-center"
+          }`}
+        >
+          <div
+            className={`flex items-center ${isMobile ? "justify-between" : ""}`}
+          >
             <div className="text-2xl font-bold mr-16"> B </div>
             <div>
               <div className="uppercase text-sm font-mono">
@@ -141,13 +171,17 @@ export default function SliderWorking() {
               </div>
             </div>
           </div>
-          <div className="uppercase text-sm font-mono">
+          <div
+            className={`uppercase text-sm font-mono ${isMobile ? "mt-4" : ""}`}
+          >
             Digital Designer / <br />
             Developer
           </div>
-          <div className="text-xs flex items-center">
+          <div
+            className={`text-xs flex items-center ${isMobile ? "mt-4" : ""}`}
+          >
             <span className="h-2 w-2 bg-red-500 rounded-full inline-block mr-2"></span>
-            Available from April
+            Available from 18 June
           </div>
         </div>
       </header>
@@ -166,12 +200,18 @@ export default function SliderWorking() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="flex-none w-2/3 pr-6 snap-start"
+              className={`flex-none ${
+                isMobile ? "w-full" : "w-2/3"
+              } pr-4 md:pr-6 snap-start`}
               style={{ scrollSnapAlign: "start" }}
             >
               <div className="bg-zinc-900 rounded-lg overflow-hidden h-full">
                 <div className="p-6 pb-0">
-                  <div className="grid grid-cols-3 gap-4 text-xs font-mono mb-4">
+                  <div
+                    className={`grid ${
+                      isMobile ? "grid-cols-2" : "grid-cols-3"
+                    } gap-2 md:gap-4 text-xs font-mono mb-4`}
+                  >
                     <div>
                       <div className="text-gray-500 mb-1">SERVICE:</div>
                       <div>{project.service}</div>
@@ -180,21 +220,22 @@ export default function SliderWorking() {
                       <div className="text-gray-500 mb-1">DEVELOPMENT:</div>
                       <div>{project.development}</div>
                     </div>
-                    <div>
-                      <div className="text-gray-500 mb-1">AWARDS:</div>
-                      <div>{project.awards}</div>
-                    </div>
+                    {!isMobile && (
+                      <div>
+                        <div className="text-gray-500 mb-1">AWARDS:</div>
+                        <div>{project.awards}</div>
+                      </div>
+                    )}
                   </div>
 
                   <div className="relative h-64 w-full mb-4 bg-black rounded overflow-hidden">
                     <div className="absolute inset-0 flex items-center justify-center">
                       <Image
                         src={project.image}
-                        width={300}
-                        height={300}
+                        width={450}
+                        height={450}
                         alt={project.title}
                       />
-
                       <div className="w-full h-full bg-zinc-800 relative">
                         {project.tagline && (
                           <div className="absolute bottom-8 left-8 text-3xl font-bold max-w-xs leading-tight">
@@ -210,10 +251,12 @@ export default function SliderWorking() {
                             creatures
                           </div>
                         )}
-                        {project.id === 1 && (
-                          <div className="absolute right-4 bottom-4 bg-white text-black text-xs px-3 py-1">
-                            VISIT WEBSITE
-                          </div>
+                        {project.isProof && (
+                          <Link href={project.urlSite}>
+                            <div className="absolute right-4 bottom-4 bg-white text-black text-xs px-3 py-1">
+                              VISIT WEBSITE
+                            </div>
+                          </Link>
                         )}
                       </div>
                     </div>
@@ -224,9 +267,11 @@ export default function SliderWorking() {
                       <div className="text-gray-500 text-xs font-mono mb-1">
                         WEBSITE:
                       </div>
-                      <div className="text-xs font-mono uppercase">
-                        {project.website}
-                      </div>
+                      <Link href={project.urlSite}>
+                        <div className="text-xs font-mono uppercase">
+                          {project.website}
+                        </div>
+                      </Link>
                     </div>
                     <div className="text-xs uppercase font-bold bg-zinc-800 px-3 py-1 self-end">
                       {project.title}
@@ -255,7 +300,11 @@ export default function SliderWorking() {
 
       {/* Footer with Navigation Controls */}
       <footer className="p-12">
-        <div className="flex justify-between">
+        <div
+          className={`flex ${
+            isMobile ? "flex-col space-y-4" : "justify-between"
+          }`}
+        >
           <div className="flex space-x-4">
             <button
               className="w-12 h-12 rounded-full border border-zinc-700 flex items-center justify-center hover:bg-zinc-800 transition-colors"
@@ -298,7 +347,9 @@ export default function SliderWorking() {
               </svg>
             </button>
           </div>
-          <div className="flex items-center">
+          <div
+            className={`flex items-center ${isMobile ? "justify-between" : ""}`}
+          >
             <div className="text-sm mr-4 text-zinc-500">
               {currentSlide + 1} / {totalSlides}
             </div>
