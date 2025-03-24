@@ -13,6 +13,8 @@ async function startServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    introspection: true,
+    playground: true,
     formatError: (error) => {
       return {
         message: error.message,
