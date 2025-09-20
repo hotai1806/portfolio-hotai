@@ -174,8 +174,8 @@ export default function SliderWorking() {
           <div
             className={`uppercase text-sm font-mono ${isMobile ? "mt-4" : ""}`}
           >
-            Digital Designer / <br />
-            Developer
+            Software Engineer / <br />
+            Full-stack Developer
           </div>
           <div
             className={`text-xs flex items-center ${isMobile ? "mt-4" : ""}`}

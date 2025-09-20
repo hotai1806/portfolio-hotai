@@ -8,10 +8,19 @@ import FlipLink from "./components/TextAnimationFlip";
 import { myFont } from "./lib/customeFont";
 import ExperienceSlider from "./components/SliderWorking";
 
+const platforms = [
+  { id: "twitter", name: "Twitter", url: "https://twitter.com/hotai1806" },
+  { id: "github", name: "GitHub", url: "https://github.com/hotai1806" },
+  {
+    id: "linkedin",
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/hotai1806",
+  },
+];
+
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   // const objects: Object3DData[] = [
   //   {
@@ -30,10 +39,14 @@ export default function Home() {
 
       // Calculate new positions based on scroll
       // You can adjust the multiplier (0.5) to control animation speed
-      if (pressTextRef.current && awardsTextRef.current) {
+      if (
+        pressTextRef.current &&
+        awardsTextRef.current &&
+        window.innerWidth > 768
+      ) {
         const pressWidth = pressTextRef.current.offsetWidth;
         const awardsWidth = awardsTextRef.current.offsetWidth;
-        const windowWidth = window.innerWidth;
+        const windowWidth = window.innerWidth + 600;
         const positionPress = windowWidth / 2 - pressWidth;
         const postionAwrd = windowWidth / 2 - awardsWidth;
 
@@ -99,7 +112,7 @@ export default function Home() {
       <Navigation isOpen={isMenuOpen} toggleMenu={() => setIsMenuOpen(false)} />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center px-8 relative">
+      <section className="md:min-h-screen min-h-[60svh] flex items-center px-8 relative items">
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
             <span
@@ -127,7 +140,7 @@ export default function Home() {
       </section>
 
       {/* Work Section */}
-      <section id="work" className="py-20 px-8">
+      {/* <section id="work" className="py-20 px-8">
         <FadeInSection>
           <h2 className="text-4xl font-bold mb-16">Selected Work</h2>
         </FadeInSection>
@@ -165,7 +178,7 @@ export default function Home() {
             </FadeInSection>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* About Section */}
       <section
@@ -255,13 +268,13 @@ export default function Home() {
             © {new Date().getFullYear()} Ho Tan Tai
           </p>
           <div className="flex gap-6">
-            {["Twitter", "GitHub", "LinkedIn"].map((platform) => (
+            {platforms.map(({ id, name, url }) => (
               <a
-                key={platform}
-                href="#"
+                key={id}
+                href={url}
                 className="text-gray-400 hover:text-white transition-colors hover:translate-y-[-2px] transform inline-block"
               >
-                {platform}
+                {name}
               </a>
             ))}
           </div>
