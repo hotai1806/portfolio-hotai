@@ -62,7 +62,7 @@ export default function Navigation({ isOpen, toggleMenu }: NavigationProps) {
             >
               <FlipLink
                 // key={item}
-                additionTailwindClass="text-xl sm:text-3xl md:text-9xl lg:text-9xl text-vanilla-primary"
+                additionTailwindClass="text-6xl md:text-9xl lg:text-9xl text-vanilla-primary"
                 style={{ animationDelay: `${index * 100}ms` }}
                 href={link}
               >

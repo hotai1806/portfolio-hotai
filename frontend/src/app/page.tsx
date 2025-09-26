@@ -65,18 +65,15 @@ export default function Home() {
     // Event listeners
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  useEffect(() => {
     const handleScrollSetHeader = () => {
       setScrollPosition(window.scrollY);
     };
 
     window.addEventListener("scroll", handleScrollSetHeader);
-    return () => window.removeEventListener("scroll", handleScrollSetHeader);
+    return () => {
+      window.removeEventListener("scroll", handleScrollSetHeader);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -112,7 +109,10 @@ export default function Home() {
       <Navigation isOpen={isMenuOpen} toggleMenu={() => setIsMenuOpen(false)} />
 
       {/* Hero Section */}
-      <section className="md:min-h-screen min-h-[60svh] flex items-center px-8 relative items">
+      <section
+        id="home"
+        className="md:min-h-screen min-h-[60svh] flex items-center px-8 relative items"
+      >
         <div className="max-w-4xl">
           <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
             <span
@@ -135,7 +135,7 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section id="experience" className="py-20 px-8">
+      <section id="project" className="py-20 px-8">
         <ExperienceSlider></ExperienceSlider>
       </section>
       {/*  # TODO: Complete chat widget integration
