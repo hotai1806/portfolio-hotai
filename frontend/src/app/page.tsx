@@ -138,6 +138,11 @@ export default function Home() {
       <section id="experience" className="py-20 px-8">
         <ExperienceSlider></ExperienceSlider>
       </section>
+      {/*  # TODO: Complete chat widget integration
+      <iframe
+        src="https://chat-widget.vercel.app"
+        className="fixed bottom-5 right-5 w-80 h-96 rounded-2xl shadow-lg border z-10"
+      /> */}
 
       {/* Work Section */}
       {/* <section id="work" className="py-20 px-8">
