@@ -77,7 +77,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-black/95 min-h-screen text-white ">
+    <div className="bg-black/95 min-h-screen text-white no-scrollbar">
       {/* <ThreeBackground /> */}
 
       {/* Rest of the Portfolio component remains the same... */}
@@ -109,162 +109,138 @@ export default function Home() {
       <Navigation isOpen={isMenuOpen} toggleMenu={() => setIsMenuOpen(false)} />
 
       {/* Hero Section */}
-      <section
-        id="home"
-        className="md:min-h-screen min-h-[60svh] flex items-center px-8 relative items"
-      >
-        <div className="max-w-4xl">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            <span
-              ref={pressTextRef}
-              className={`${myFont.className} md:leading-[0.888em] text-[clamp(25px,20.8333vw,440px)] md:text-[clamp(65px,20.8333vw,440px)] block transform transition-transform hover:translate-x-4 duration-100 text-vanilla-primary `}
-            >
-              FULLSTACK
-            </span>
+      <div className="snap-y snap-mandatory h-screen overflow-y-scroll overflow-x-hidden bg-black/95 text-white no-scrollbar">
+        <section
+          id="home"
+          className="md:min-h-screen min-h-[60svh] flex items-center px-8 relative items snap-start "
+        >
+          <div className="max-w-4xl">
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+              <span
+                ref={pressTextRef}
+                className={`${myFont.className} md:leading-[0.888em] text-[clamp(25px,20.8333vw,440px)] md:text-[clamp(65px,20.8333vw,440px)] block transform transition-transform hover:translate-x-4 duration-100 text-vanilla-primary `}
+              >
+                FULLSTACK
+              </span>
 
-            <span
-              ref={awardsTextRef}
-              className={`${myFont.className} md:leading-[0.888em] text-[clamp(25px,20.8333vw,440px)] md:text-[clamp(65px,20.8333vw,440px)] block transform transition-transform hover:translate-x-4 duration-100 text-red-primary z-20 md:pl-64  pl-2`}
-            >
-              DEVELOPER
-            </span>
-            <span className="block transform transition-transform hover:translate-x-4 duration-300 delay-100"></span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-400 max-w-2xl transform transition-all duration-300 hover:text-white hover:translate-x-2">
-            &quot;Where were we go, we don&apos;t need road&quot; - Doc
-          </p>
-        </div>
-      </section>
-      <section id="project" className="py-20 px-8">
-        <ExperienceSlider></ExperienceSlider>
-      </section>
-      {/*  # TODO: Complete chat widget integration
+              <span
+                ref={awardsTextRef}
+                className={`${myFont.className} md:leading-[0.888em] text-[clamp(25px,20.8333vw,440px)] md:text-[clamp(65px,20.8333vw,440px)] block transform transition-transform hover:translate-x-4 duration-100 text-red-primary z-20 md:pl-64  pl-2`}
+              >
+                DEVELOPER
+              </span>
+              <span className="block transform transition-transform hover:translate-x-4 duration-300 delay-100"></span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-400 max-w-2xl transform transition-all duration-300 hover:text-white hover:translate-x-2">
+              &quot;Where were we go, we don&apos;t need road&quot; - Doc
+            </p>
+          </div>
+        </section>
+        <section
+          id="project"
+          className="py-20 px-8 snap-start md:min-h-screen min-h-[60svh]"
+        >
+          <ExperienceSlider></ExperienceSlider>
+        </section>
+        {/*  # TODO: Complete chat widget integration
       <iframe
         src="https://chat-widget.vercel.app"
         className="fixed bottom-5 right-5 w-80 h-96 rounded-2xl shadow-lg border z-10"
       /> */}
 
-      {/* Work Section */}
-      {/* <section id="work" className="py-20 px-8">
-        <FadeInSection>
-          <h2 className="text-4xl font-bold mb-16">Selected Work</h2>
-        </FadeInSection>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {[1, 2, 3, 4].map((item) => (
-            <FadeInSection key={item}>
-              <div
-                className="group relative overflow-hidden bg-red"
-                onMouseEnter={() => setHoveredProject(item)}
-                onMouseLeave={() => setHoveredProject(null)}
-              >
-                <div className="aspect-w-16 aspect-h-9 bg-red-800 rounded-lg overflow-hidden">
-                  <div
-                    className={`w-full h-full bg-gray-700 transition-all duration-500 ${
-                      hoveredProject === item ? "scale-110 blur-sm" : ""
-                    }`}
-                  ></div>
-                </div>
-                <div className="mt-4">
-                  <h3 className="text-2xl font-bold mb-2 transition-colors group-hover:text-blue-400">
-                    Project {item}
-                  </h3>
-                  <p className="text-gray-400 transition-colors group-hover:text-white">
-                    Description of the project
-                  </p>
-                  <a
-                    href={`#project-${item}`}
-                    className="inline-flex items-center mt-4 group"
-                  >
-                    View Project
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                  </a>
-                </div>
-              </div>
-            </FadeInSection>
-          ))}
-        </div>
+        {/* Work Section */}
+        {/* <section id="work" className="py-20 px-8">
+
       </section> */}
 
-      {/* About Section */}
-      <section
-        id="about"
-        className="py-20 px-8 bg-gray-900/50 backdrop-blur-lg"
-      >
-        <div className="max-w-4xl mx-auto">
-          <FadeInSection>
-            <h2 className="text-4xl font-bold mb-8">About</h2>
-            <p className="text-xl text-gray-400 mb-8 hover:text-white transition-colors">
-              I&apos;m a creative developer based in Ho Chi Minh City, Viet Nam.
-              With a passion for creating immersive digital experiences, I
-              combine technical expertise with creative design to build
-              meaningful and innovative solutions.
-            </p>
-          </FadeInSection>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
+        {/* About Section */}
+        <section
+          id="about"
+          className="py-20 px-8 bg-gray-900/50 backdrop-blur-lg snap-start md:min-h-screen min-h-[60svh] "
+        >
+          <div className="max-w-4xl mx-auto">
             <FadeInSection>
-              <div className="transform hover:translate-x-2 transition-transform">
-                <h3 className="text-2xl font-bold mb-4">Skills</h3>
-                <ul className="space-y-2 text-gray-400">
-                  <li className="hover:text-white transition-colors">
-                    Backend Development
-                  </li>
-                  <li className="hover:text-white transition-colors">
-                    Frontend Development
-                  </li>
-                  <li className="hover:text-white transition-colors">
-                    3D Animation
-                  </li>
-                  <li className="hover:text-white transition-colors">
-                    UI/UX Design
-                  </li>
-                </ul>
-              </div>
+              <h2 className="text-4xl font-bold mb-8">About</h2>
+              <p className="text-xl text-gray-400 mb-8 hover:text-white transition-colors">
+                I&apos;m a creative developer based in Ho Chi Minh City, Viet
+                Nam. With a passion for creating immersive digital experiences,
+                I combine technical expertise with creative design to build
+                meaningful and innovative solutions.
+              </p>
             </FadeInSection>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
+              <FadeInSection>
+                <div className="transform hover:translate-x-2 transition-transform">
+                  <h3 className="text-2xl font-bold mb-4">Skills</h3>
+                  <ul className="space-y-2 text-gray-400">
+                    <li className="hover:text-white transition-colors">
+                      Backend Development
+                    </li>
+                    <li className="hover:text-white transition-colors">
+                      Frontend Development
+                    </li>
+                    <li className="hover:text-white transition-colors">
+                      3D Animation
+                    </li>
+                    <li className="hover:text-white transition-colors">
+                      UI/UX Design
+                    </li>
+                  </ul>
+                </div>
+              </FadeInSection>
+
+              <FadeInSection>
+                <div className="transform hover:translate-x-2 transition-transform">
+                  <h3 className="text-2xl font-bold mb-4">Technologies</h3>
+                  <ul className="space-y-2 text-gray-400">
+                    <li className="hover:text-white transition-colors">
+                      React / Next.js
+                    </li>
+                    <li className="hover:text-white transition-colors">
+                      Three.js
+                    </li>
+                    <li className="hover:text-white transition-colors">
+                      WebGL
+                    </li>
+                    <li className="hover:text-white transition-colors">
+                      Python
+                    </li>
+                    <li className="hover:text-white transition-colors">
+                      NodeJs / NestJs
+                    </li>
+                  </ul>
+                </div>
+              </FadeInSection>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section
+          id="contact"
+          className="py-20 px-8 snap-start md:min-h-screen min-h-[60svh]"
+        >
+          <div className="max-w-4xl mx-auto">
             <FadeInSection>
-              <div className="transform hover:translate-x-2 transition-transform">
-                <h3 className="text-2xl font-bold mb-4">Technologies</h3>
-                <ul className="space-y-2 text-gray-400">
-                  <li className="hover:text-white transition-colors">
-                    React / Next.js
-                  </li>
-                  <li className="hover:text-white transition-colors">
-                    Three.js
-                  </li>
-                  <li className="hover:text-white transition-colors">WebGL</li>
-                  <li className="hover:text-white transition-colors">Python</li>
-                  <li className="hover:text-white transition-colors">
-                    NodeJs / NestJs
-                  </li>
-                </ul>
-              </div>
+              <h2 className="text-4xl font-bold mb-8">
+                Let&apos;s Work Together
+              </h2>
+              <p className="text-xl text-gray-400 mb-12 hover:text-white transition-colors">
+                Have a project in mind? Let&apos;s create something amazing
+                together.
+              </p>
+              <a
+                href="mailto:hotai1806@gmail.com"
+                className="inline-flex items-center text-2xl font-bold group hover:text-blue-400 transition-colors"
+              >
+                hotai1806@gmail.com
+                <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform" />
+              </a>
             </FadeInSection>
           </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-8">
-        <div className="max-w-4xl mx-auto">
-          <FadeInSection>
-            <h2 className="text-4xl font-bold mb-8">
-              Let&apos;s Work Together
-            </h2>
-            <p className="text-xl text-gray-400 mb-12 hover:text-white transition-colors">
-              Have a project in mind? Let&apos;s create something amazing
-              together.
-            </p>
-            <a
-              href="mailto:hotai1806@gmail.com"
-              className="inline-flex items-center text-2xl font-bold group hover:text-blue-400 transition-colors"
-            >
-              hotai1806@gmail.com
-              <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-2 transition-transform" />
-            </a>
-          </FadeInSection>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Footer */}
       <footer className="py-8 px-8 border-t border-gray-800">

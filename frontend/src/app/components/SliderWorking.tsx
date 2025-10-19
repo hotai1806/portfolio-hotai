@@ -153,7 +153,7 @@ export default function SliderWorking() {
   }, [currentSlide, projects.length]);
 
   return (
-    <div className="bg-black text-white min-h-screen ">
+    <div className="bg-black text-white ">
       {/* Header */}
       <header className="p-12">
         <div
@@ -190,7 +190,7 @@ export default function SliderWorking() {
       <main className="px-12 py-8">
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory flex-nowrap"
+          className="flex overflow-x-auto pb-8 scrollbar-hide snap-x  flex-nowrap"
           style={{
             scrollBehavior: "smooth",
             scrollbarWidth: "none",
