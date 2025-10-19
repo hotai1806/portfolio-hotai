@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { ApolloWrapper } from "./ApolloWrapper";
+import ChatWidget from "./components/ChatWidget";
 
 // import RootLayoutClient from "./root-layout-client";
 // import RouteLoadingIndicator from "./components/LoadingIndicator";
@@ -38,6 +39,7 @@ export default function RootLayout({
         {/* <RouteLoadingIndicator /> */}
         <ApolloWrapper>{children}</ApolloWrapper>;
         {/* <RootLayoutClient>{children}</RootLayoutClient> */}
+        <ChatWidget />
       </body>
     </html>
   );
