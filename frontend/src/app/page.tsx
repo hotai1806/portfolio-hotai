@@ -243,7 +243,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="py-8 px-8 border-t border-gray-800">
+      <footer className="fixed bottom-0 py-8 px-8 border-t border-gray-800 w-screen bg-black">
         <div className="flex justify-between items-center">
           <p className="text-gray-400">
             © {new Date().getFullYear()} Ho Tan Tai

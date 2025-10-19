@@ -19,7 +19,7 @@ export default function ChatWidget() {
   return (
     <>
       {isOpen ? (
-        <div className="fixed bottom-6 right-6 z-50 bg-white rounded-xl shadow-lg border overflow-hidden w-80 h-96 flex flex-col">
+        <div className="fixed bottom-16 right-6 z-50 bg-white rounded-xl shadow-lg border overflow-hidden w-80 h-96 flex flex-col">
           {/* header */}
           <div className="flex justify-between items-center p-2 border-b text-sm font-medium text-black">
             <span>Chat</span>
@@ -45,7 +45,7 @@ export default function ChatWidget() {
         <button
           onClick={() => setIsOpen(true)}
           aria-label="Open chat"
-          className="fixed bottom-6 right-6 z-50 rounded-full p-3 bg-vanilla-primary text-black shadow-lg hover:opacity-90 transition"
+          className="fixed bottom-16 right-6 z-50 rounded-full p-3 bg-vanilla-primary text-black shadow-lg hover:opacity-90 transition"
           title="Open chat"
         >
           <MessageSquare className="w-7 h-7" />
